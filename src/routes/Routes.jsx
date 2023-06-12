@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Main from "../layouts/Main";
+import AddClass from "../pages/Dashboard/Instructor/AddClass";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
@@ -31,7 +32,8 @@ export const router = createBrowserRouter([
         element: <DashboardLayout></DashboardLayout>,
         children: [
             {
-                
+                path: 'add-class',
+                element: <AddClass></AddClass>
             }
         ]
     }

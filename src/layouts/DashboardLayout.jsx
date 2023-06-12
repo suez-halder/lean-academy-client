@@ -2,8 +2,8 @@ import { Link, Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
     const isStudent = false;
-    const isInstructor = false;
-    const isAdmin = true;
+    const isInstructor = true;
+    const isAdmin = false;
 
 
 
@@ -31,7 +31,7 @@ const DashboardLayout = () => {
                     {
                         isInstructor &&
                         <>
-                            <li><Link>Add a Class</Link></li>
+                            <li><Link to='add-class'>Add a Class</Link></li>
                             <li><Link>All Classes</Link></li>
                         </>
                     }
