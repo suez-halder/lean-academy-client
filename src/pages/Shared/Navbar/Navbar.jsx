@@ -18,13 +18,16 @@ const Navbar = () => {
             <li><Link to='/'>Home</Link></li>
             <li><Link>Instructors</Link></li>
             <li><Link>Classes</Link></li>
+            {
+                user && <li><Link>Dashboard</Link></li>
+            }
         </>
 
 
 
 
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-red-500">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
