@@ -1,12 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { useForm } from "react-hook-form";
 import { FcGoogle } from 'react-icons/fc'
 import toast from 'react-hot-toast';
 
 const Login = () => {
-    const { signIn, googleSignIn, setLoading } = useAuth()
+    const navigate = useNavigate()
+    const location = useLocation()
+    const { signIn, googleSignIn } = useAuth()
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const from = location.state?.from?.pathname || "/";
 
     const handleLogin = data => {
         signIn(data.email, data.password)
@@ -14,20 +18,32 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('Logged In Successfully');
+
             })
     }
 
     const handleGoogleSignIn = () => {
         googleSignIn()
-          .then(result => {
-            console.log(result.user);
-          })
-          .catch(err => {
-            console.log(err.message);
-            toast.error(err.message);
-            setLoading(false);
-          })
-      }
+            .then(result => {
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+
+                // console.log('user profile info updated');
+                fetch('http://localhost:3000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from, { replace: true })
+                    })
+                navigate(from, { replace: true })
+            })
+    }
 
 
     return (
@@ -45,28 +61,28 @@ const Login = () => {
                     action=''
                     className='space-y-6 ng-untouched ng-pristine ng-valid'
                 >
-                     <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Email</span>
-                                </label>
-                                <input type="email" {...register("email", { required: true })} name="email" placeholder="email" className="input input-bordered" />
-                                {errors.email && <span className="text-red-500 my-2 text-xs">Email is required</span>}
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Password</span>
-                                </label>
-                                <input type="password" {...register("password")} name="password" placeholder="password" className="input input-bordered" />
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
-                            </div>
-                            <div className="form-control mt-6">
-                                <button className="btn bg-green-500">Login</button>
-                            </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Email</span>
+                        </label>
+                        <input type="email" {...register("email", { required: true })} name="email" placeholder="email" className="input input-bordered" />
+                        {errors.email && <span className="text-red-500 my-2 text-xs">Email is required</span>}
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Password</span>
+                        </label>
+                        <input type="password" {...register("password")} name="password" placeholder="password" className="input input-bordered" />
+                        <label className="label">
+                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                        </label>
+                    </div>
+                    <div className="form-control mt-6">
+                        <button className="btn bg-green-500">Login</button>
+                    </div>
                 </form>
                 <div className='space-y-1'>
-                    <button  className='text-xs hover:underline hover:text-green-500 text-gray-400'>
+                    <button className='text-xs hover:underline hover:text-green-500 text-gray-400'>
                         Forgot password?
                     </button>
                 </div>

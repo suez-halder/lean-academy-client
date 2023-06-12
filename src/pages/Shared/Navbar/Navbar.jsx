@@ -1,11 +1,21 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 import Logo from "./Logo";
+import placeholderImg from '../../../assets/placeholder.jpg'
 
 const Navbar = () => {
+    const { user, logOut } = useAuth()
+
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error))
+    }
 
     const navOptions =
         <>
-            <li><Link>Home</Link></li>
+            <li><Link to='/'>Home</Link></li>
             <li><Link>Instructors</Link></li>
             <li><Link>Classes</Link></li>
         </>
@@ -32,7 +42,25 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to='login'><button className="btn">Login</button></Link>
+                {
+                    user ?
+                        <>
+                            <img
+                                className='rounded-full mr-2'
+                                referrerPolicy='no-referrer'
+                                src={user && user.photoURL ? user.photoURL : placeholderImg}
+                                alt="profile"
+                                height='25'
+                                width='25'
+                                
+                            />
+                            <button onClick={handleLogOut}>Log Out</button>
+                        </>
+                        :
+                        <>
+                            <button><Link to='/login'>Login</Link></button>
+                        </>
+                }
             </div>
         </div>
     );
