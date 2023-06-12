@@ -5,8 +5,10 @@ const Main = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <Outlet></Outlet>
-            
+            <div className="pt-12">
+                <Outlet></Outlet>
+            </div>
+
         </div>
     );
 };
