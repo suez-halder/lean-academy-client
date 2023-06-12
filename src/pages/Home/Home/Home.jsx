@@ -1,9 +1,16 @@
+import Banner from "../Banner/Banner";
+import ClassSection from "../ClassSection/ClassSection";
+import ExtraSection from "../ExrtaSection/ExtraSection";
+import PopularSection from "../PopularSection/PopularSection";
 
 const Home = () => {
     return (
-        <div>
-            <h2>This is Home</h2>
-        </div>
+        <>
+        <Banner></Banner>
+        <ClassSection></ClassSection>
+        <PopularSection></PopularSection>
+        <ExtraSection></ExtraSection>
+        </>
     );
 };
 
