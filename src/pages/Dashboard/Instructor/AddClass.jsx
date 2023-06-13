@@ -75,13 +75,13 @@ const AddClass = () => {
                         <label className="label">
                             <span className="label-text">Instructor Name</span>
                         </label>
-                        <input type="text" defaultValue={user.displayName} {...register("instructorName", { required: true })} name="instructorName" className="input input-bordered" />
+                        <input type="text" readOnly defaultValue={user.displayName} {...register("instructorName", { required: true })} name="instructorName" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Instructor Email</span>
                         </label>
-                        <input type="text" defaultValue={user.email} {...register("instructorEmail", { required: true })} name="instructorEmail" className="input input-bordered" />
+                        <input type="text" readOnly defaultValue={user.email} {...register("instructorEmail", { required: true })} name="instructorEmail" className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">

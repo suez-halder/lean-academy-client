@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FcApprove } from 'react-icons/fc'
 import { RiFeedbackFill} from 'react-icons/ri'
 import { RxCrossCircled} from 'react-icons/rx'
+import toast from "react-hot-toast";
 
 const ManageClasses = () => {
     const { user, loading } = useAuth()
@@ -18,9 +19,33 @@ const ManageClasses = () => {
             return res.data
         }
     })
-    console.log(classes);
+    // console.log(classes);
 
-    
+    const updateStatus = (singleClass, newStatus) =>{
+        fetch(`${import.meta.env.VITE_API_URL}/classes/${singleClass._id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ status: newStatus })
+        })
+       
+
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(newStatus);
+            console.log(data);
+            if(data.modifiedCount){
+                refetch();
+                toast.success("Status Changed Successfully")
+                
+            }
+        })
+    }
+
+
+
+
 
     return (
         <div className="overflow-x-auto">
@@ -62,11 +87,11 @@ const ManageClasses = () => {
                             <td>{singleClass.name}</td>
                             <td>{singleClass.email}</td>
                             <td>{singleClass.seats}</td>
-                            <td>{singleClass.price}</td>
-                            <td>{singleClass.status}</td>
+                            <td>${singleClass.price}</td>
+                            <td className="capitalize">{singleClass.status}</td>
                             <td className="flex items-center justify-center mt-3 gap-3">
-                                <button ><FcApprove className="text-3xl"></FcApprove></button>
-                                <button ><RxCrossCircled className="text-3xl text-red-500"></RxCrossCircled></button>
+                                <button onClick={()=> updateStatus(singleClass, 'approved')} ><FcApprove className="text-3xl"></FcApprove></button>
+                                <button onClick={()=> updateStatus(singleClass, 'denied')} ><RxCrossCircled className="text-2xl text-red-500"></RxCrossCircled></button>
                                 <button ><RiFeedbackFill className="text-2xl text-sky-500"></RiFeedbackFill></button>
                             </td>
 

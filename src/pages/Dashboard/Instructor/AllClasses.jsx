@@ -1,6 +1,8 @@
 import useAuth from "../../../hooks/useAuth";
 import { useQuery } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
+import {LuEdit} from 'react-icons/lu'
+import {VscFeedback} from 'react-icons/vsc'
 
 const AllClasses = () => {
     const { user, loading } = useAuth()
@@ -44,10 +46,14 @@ const AllClasses = () => {
                         >
                             <th>{index+1}</th>
                             <td>{singleClass.className}</td>
-                            <td>{singleClass.status}</td>
+                            <td className="capitalize">{singleClass.status}</td>
                             <td>0</td>
-                            <td>Feedback</td>
-                            <td>Update</td>
+                            <td >
+                                <button className="text-3xl"><VscFeedback></VscFeedback></button>
+                            </td>
+                            <td>
+                                <button className="text-2xl"><LuEdit></LuEdit></button>
+                            </td>
                             
                         </tr>)
                     }
