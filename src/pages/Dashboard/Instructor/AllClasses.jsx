@@ -16,7 +16,7 @@ const AllClasses = () => {
         }
     })
 
-    console.log(classes);
+    // console.log(classes);
 
 
 
