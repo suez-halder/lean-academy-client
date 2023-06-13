@@ -6,18 +6,18 @@ const useClasses = () => {
     const { user, loading } = useAuth()
     const [axiosSecure] = useAxiosSecure()
 
-    const { refetch, data: Classes = [] } = useQuery({
-        queryKey: ['Classes', user?.email],
+    const { refetch, data: classes = [] } = useQuery({
+        queryKey: ['classes', user?.email],
         enabled: !loading,
         queryFn: async () => {
-            const res = await axiosSecure(`/Classes`)
+            const res = await axiosSecure(`/classes`)
             // console.log('res from axios', res);
             return res.data;
         },
 
     })
 
-    return [Classes, refetch]
+    return [classes, refetch]
 };
 
 export default useClasses;
