@@ -34,7 +34,7 @@ const AddClass = () => {
             }
             addClass(classData)
             .then(data=>{
-                console.log(data);
+                // console.log(data);
                 setLoading(false)
                 toast.success('Class Added') 
                 navigate('/dashboard/all-classes')

@@ -11,6 +11,7 @@ import AllClasses from "../pages/Dashboard/Instructor/AllClasses";
 import EnrolledClasses from "../pages/Dashboard/Student/EnrolledClasses";
 import SelectedClasses from "../pages/Dashboard/Student/SelectedClasses";
 import Home from "../pages/Home/Home/Home";
+import Instructors from "../pages/Instructors/Instructors";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AdminRoute from "./AdminRoute";
@@ -28,7 +29,11 @@ export const router = createBrowserRouter([
                 element: <Home></Home>,
             },
             {
-                path: 'classes-page',
+                path: 'instructors',
+                element: <Instructors></Instructors>
+            },
+            {
+                path: 'classes',
                 element: <Classes></Classes>
             }
 

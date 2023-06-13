@@ -40,7 +40,7 @@ const Register = () => {
                         console.log(loggedUser)
                         updateUserProfile(data.name, imageURL)
                             .then(() => {
-                                const saveUser = { name: data.name, email: data.email, role: 'student' }
+                                const saveUser = { name: data.name, email: data.email, role: 'student', photo: imageURL }
                                 // console.log('user profile info updated');
                                 fetch(`${import.meta.env.VITE_API_URL}/users`, {
                                     method: 'POST',

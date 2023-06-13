@@ -1,13 +1,23 @@
 // import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import useClasses from "../../hooks/useClasses";
 
 const Classes = () => {
     // const {user} = useAuth()
     // console.log(user);
+    const navigate = useNavigate()
     const [classes] = useClasses()
     // console.log(classes);
     const approvedClasses = classes.filter(c => c.status === 'approved')
-    console.log(approvedClasses);
+    // console.log(approvedClasses);
+
+    const handleSelect = async id =>{
+        console.log(id);
+        navigate('/dashboard/selected-classes')
+        
+        
+
+    }
 
 
     return (
@@ -49,7 +59,7 @@ const Classes = () => {
                             <td>{singleClass.seats}</td>
                             <td>${singleClass.price}</td>
                             <td>
-                                <button className="btn btn-info btn-xs">Select</button>
+                                <button onClick={() => handleSelect(singleClass._id)} className="btn btn-info btn-xs">Select</button>
                             </td>
                             
                            

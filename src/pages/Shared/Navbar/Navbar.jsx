@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import Logo from "./Logo";
 import placeholderImg from '../../../assets/placeholder.jpg'
@@ -15,11 +15,11 @@ const Navbar = () => {
 
     const navOptions =
         <>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link>Instructors</Link></li>
-            <li><Link to='classes-page'>Classes</Link></li>
+            <li><NavLink to='/'>Home</NavLink></li>
+            <li><NavLink to="instructors">Instructors</NavLink></li>
+            <li><NavLink to='classes'>Classes</NavLink></li>
             {
-                user && <li><Link to='dashboard'>Dashboard</Link></li>
+                user && <li><NavLink to='dashboard'>Dashboard</NavLink></li>
             }
         </>
 
@@ -27,7 +27,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="navbar bg-red-500">
+        <div className="navbar bg-green-500">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
