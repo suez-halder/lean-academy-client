@@ -1,6 +1,11 @@
+import useUsers from "../../../hooks/useUsers";
 
 const ManageUsers = () => {
 
+    const [users] = useUsers()
+    // console.log(users);
+
+    const filteredUsers = users?.filter(user => user.role !== 'admin') || [];
 
 
 
@@ -12,20 +17,27 @@ const ManageUsers = () => {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Image</th>
                         <th>Name</th>
+                        <th>Email</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {/* row 1 */}
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                    </tr>
-                    
+                    {
+                        filteredUsers.map((user, index) => <tr
+                            key={user._id}
+                        >
+                            <th>{index + 1}</th>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                            <td>
+                                <button className="btn">Admin</button>
+                                <button className="btn">Instructor</button>
+                            </td>
+                        </tr>)
+                    }
+
                 </tbody>
             </table>
         </div>
@@ -33,3 +45,6 @@ const ManageUsers = () => {
 };
 
 export default ManageUsers;
+
+
+
