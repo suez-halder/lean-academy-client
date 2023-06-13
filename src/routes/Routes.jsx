@@ -12,6 +12,7 @@ import SelectedClasses from "../pages/Dashboard/Student/SelectedClasses";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -59,7 +60,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'manage-users',
-                element: <ManageUsers></ManageUsers>
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             }
         ]
     }
