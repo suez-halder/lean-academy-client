@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 
@@ -36,34 +36,34 @@ const DashboardLayout = () => {
                 <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side bg-green-400 ">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 h-full bg-green-300 text-base-content">
+                <ul className="menu gap-2 p-6 w-60 h-full">
                     {/* Sidebar content here */}
                     {
                         role.isStudent &&
                         <>
-                            <li><Link to='selected-classes'>Selected Classes</Link></li>
-                            <li><Link to='enrolled-classes'>Enrolled Classes</Link></li>
-                            <li><Link to='payment-history'>Payment History</Link></li>
+                            <li><NavLink to='selected-classes'>Selected Classes</NavLink></li>
+                            <li><NavLink to='enrolled-classes'>Enrolled Classes</NavLink></li>
+                            <li><NavLink to='payment-history'>Payment History</NavLink></li>
                         </>
                     }
                     {
                         role.isInstructor &&
                         <>
-                            <li><Link to='add-class'>Add a Class</Link></li>
-                            <li><Link to='all-classes'>All Classes</Link></li>
+                            <li><NavLink to='add-class'>Add a Class</NavLink></li>
+                            <li><NavLink to='all-classes'>All Classes</NavLink></li>
                         </>
                     }
                     {
                         role.isAdmin &&
                         <>
-                            <li><Link to='manage-classes'>Manage Classes</Link></li>
-                            <li><Link to='manage-users'>Manager Users</Link></li>
+                            <li><NavLink to='manage-classes'>Manage Classes</NavLink></li>
+                            <li><NavLink to='manage-users'>Manage Users</NavLink></li>
                         </>
                     }
                     <div className="divider"></div>
-                    <li><Link to='/'>Home</Link></li>
+                    <li><NavLink to='/'>Home</NavLink></li>
                 </ul>
 
             </div>

@@ -33,8 +33,8 @@ const ManageClasses = () => {
 
             .then(res => res.json())
             .then(data => {
-                console.log(newStatus);
-                console.log(data);
+                // console.log(newStatus);
+                // console.log(data);
                 if (data.modifiedCount) {
                     refetch();
                     toast.success("Status Changed Successfully")
@@ -89,13 +89,14 @@ const ManageClasses = () => {
                             <td>{singleClass.seats}</td>
                             <td>${singleClass.price}</td>
                             <td >
-                                <button className={`btn btn-xs capitalize ${singleClass.status === 'approved' ? 'btn-success' : singleClass.status === 'denied' ? 'btn-error' : 'btn-warning'}`}>
+                                <button 
+                                className={`btn btn-xs capitalize ${singleClass.status === 'approved' ? 'btn-success' : singleClass.status === 'denied' ? 'btn-error' : 'btn-warning'}`}>
                                     {singleClass.status}
                                 </button>
                             </td>
                             <td className="flex items-center justify-center mt-3 gap-3">
-                                <button onClick={() => updateStatus(singleClass, 'approved')} ><FcApprove className="text-3xl"></FcApprove></button>
-                                <button onClick={() => updateStatus(singleClass, 'denied')} ><RxCrossCircled className="text-2xl text-red-500"></RxCrossCircled></button>
+                                <button disabled={singleClass.status !== 'pending'} onClick={() => updateStatus(singleClass, 'approved')} ><FcApprove className="text-3xl"></FcApprove></button>
+                                <button  disabled={singleClass.status !== 'pending'} onClick={() => updateStatus(singleClass, 'denied')} ><RxCrossCircled className="text-2xl text-red-500"></RxCrossCircled></button>
                                 <button ><RiFeedbackFill className="text-2xl text-sky-500"></RiFeedbackFill></button>
                             </td>
 

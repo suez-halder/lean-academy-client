@@ -6,3 +6,13 @@
 *{
   font-family: 'Roboto', sans-serif;
 }
+
+.drawer-side a.active {
+  color: steelblue;
+  font-weight: bold;
+  font-size: 1.125em;
+
+}
+.drawer-side a.active {
+  background-color: goldenrod;
+}

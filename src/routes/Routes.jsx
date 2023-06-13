@@ -3,6 +3,7 @@ import {
 } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Main from "../layouts/Main";
+import Classes from "../pages/Classes/Classes";
 import ManageClasses from "../pages/Dashboard/Admin/ManageClasses";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import AddClass from "../pages/Dashboard/Instructor/AddClass";
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
                 path: '/',
                 element: <Home></Home>,
             },
+            {
+                path: 'classes-page',
+                element: <Classes></Classes>
+            }
 
         ]
     },
