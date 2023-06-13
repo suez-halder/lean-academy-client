@@ -7,11 +7,12 @@ const DashboardLayout = () => {
     const { user, setLoading } = useAuth()
     const [role, setRole] = useState({ isStudent: false, isInstructor: false, isAdmin: false });
     useEffect(() => {
+        // setLoading(true)
         const fetchUserRole = async () => {
             try {
                 // setLoading(true)
-                console.log(`${import.meta.env.VITE_API_URL}/users/${user?.email}`);
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${user?.email}`);
+                // console.log(`${import.meta.env.VITE_API_URL}/users/role/${user?.email}`);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/role/${user?.email}`);
                 setRole(response.data);
                 setLoading(false);
             } catch (error) {
@@ -21,7 +22,7 @@ const DashboardLayout = () => {
         };
 
         fetchUserRole();
-    }, []);
+    }, [setLoading, user?.email]);
 
 
 
