@@ -7,43 +7,67 @@ import useAuth from "../../hooks/useAuth";
 const Register = () => {
     const navigate = useNavigate()
     const location = useLocation()
-    const { googleSignIn, createUser, updateUserProfile } = useAuth()
+    const { googleSignIn, createUser, updateUserProfile, setLoading } = useAuth()
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const from = location.state?.from?.pathname || "/";
 
     const onSubmit = data => {
         // console.log(data)
-        createUser(data.email, data.password)
-            .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser)
-                updateUserProfile(data.name, data.photoURL)
-                    .then(() => {
-                        const saveUser = { name: data.name, email: data.email }
-                        // console.log('user profile info updated');
-                        fetch('http://localhost:3000/users', {
-                            method: 'POST',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                            body: JSON.stringify(saveUser)
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                                console.log(data);
-                                if (data.insertedId) {
-                                    reset();
-                                    toast.success("User Created Successfully")
-                                    navigate('/')
+        //---
+        // Image Upload
+        //---
+        setLoading(true)
 
-                                }
+        const formData = new FormData()
+        formData.append('image', data.photoURL[0]);
+        // console.log(data.photoURL[0]);
+        // console.log(formData);
+
+        const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_KEY}`
+        // console.log(url);
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+        })
+            .then(res => res.json())
+            .then(imageData => {
+                // console.log(imageData.data.display_url);
+                const imageURL = imageData.data.display_url
+                createUser(data.email, data.password)
+                    .then(result => {
+                        const loggedUser = result.user;
+                        console.log(loggedUser)
+                        updateUserProfile(data.name, imageURL)
+                            .then(() => {
+                                const saveUser = { name: data.name, email: data.email, role: 'student' }
+                                // console.log('user profile info updated');
+                                fetch(`${import.meta.env.VITE_API_URL}/users`, {
+                                    method: 'POST',
+                                    headers: {
+                                        'content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify(saveUser)
+                                })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        console.log(data);
+                                        if (data.insertedId) {
+                                            reset();
+                                            toast.success("User Created Successfully")
+                                            navigate(from, { replace: true })
+                                        }
+                                    })
+                            })
+                            .catch(error => {
+                                console.log(error);
                             })
                     })
-                    .then(error => {
-                        console.log(error);
-                    })
             })
+
+
+
+
     };
 
     const handleGoogleSignIn = () => {
@@ -51,7 +75,7 @@ const Register = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 console.log(loggedInUser);
-                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'student' }
 
                 // console.log('user profile info updated');
                 fetch('http://localhost:3000/users', {
@@ -95,7 +119,7 @@ const Register = () => {
                         <label className="label">
                             <span className="label-text">Photo URL</span>
                         </label>
-                        <input type="text" {...register("photoURL", { required: true })} placeholder="Photo URL" className="input input-bordered" />
+                        <input type="file" {...register("photoURL", { required: true })} placeholder="Photo URL" className="input input-bordered" referrerPolicy='no-referrer' />
                         {errors.photoURL && <span className="text-red-500 my-2 text-xs">Photo URL is required</span>}
                     </div>
                     <div className="form-control">
