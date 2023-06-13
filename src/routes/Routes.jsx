@@ -15,6 +15,7 @@ import Register from "../pages/Register/Register";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import PrivateRoute from "./PrivateRoute";
+import StudentRoute from "./StudentRoute";
 
 export const router = createBrowserRouter([
     {
@@ -34,11 +35,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: 'selected-classes',
-                element: <SelectedClasses></SelectedClasses>
+                element: <StudentRoute><SelectedClasses></SelectedClasses></StudentRoute>
             },
             {
                 path: 'enrolled-classes',
-                element: <EnrolledClasses></EnrolledClasses>
+                element: <StudentRoute><EnrolledClasses></EnrolledClasses></StudentRoute>
             },
             {
                 path: 'add-class',

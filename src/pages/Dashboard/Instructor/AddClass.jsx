@@ -1,36 +1,61 @@
+import { useForm } from "react-hook-form";
+import useAuth from "../../../hooks/useAuth";
 
 const AddClass = () => {
+    const {user} = useAuth()
+    console.log(user);
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    
+    const handleAddClass = data =>{
+        console.log(data);
+    }
+    
     return (
-        <div>
-            <div className="container mx-auto my-4 px-4 lg:px-20 ">
-
-                <div className="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
-                    <div className="flex">
-                        <h1 className="font-bold uppercase text-5xl">Add a Class</h1>
+        <div className="w-2/3">
+            <form
+                    onSubmit={handleSubmit(handleAddClass)}
+                    noValidate=''
+                    action=''
+                    className='space-y-6 ng-untouched ng-pristine ng-valid'
+                >
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Class Name</span>
+                        </label>
+                        <input type="text" {...register("className", { required: true })} name="className" placeholder="class name" className="input input-bordered" />
+                        {errors.className && <span className="text-red-500 my-2 text-xs">Class name is required</span>}
                     </div>
-                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
-                        <input className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                            type="text" placeholder="First Name*" />
-                        <input className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                            type="text" placeholder="Last Name*" />
-                        <input className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                            type="email" placeholder="Email*" />
-                        <input className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                            type="number" placeholder="Phone*" />
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Class Image</span>
+                        </label>
+                        <input type="file" {...register("classImage", { required: true })} name="classImage" placeholder="class image" className="input input-bordered" />
+                        {errors.classImage && <span className="text-red-500 my-2 text-xs">Class name is required</span>}
                     </div>
-                    <div className="my-4">
-                        <textarea placeholder="Message*" className="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"></textarea>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Instructor Name</span>
+                        </label>
+                        <input type="text" defaultValue={user.displayName} {...register("instructorName", { required: true })} name="instructorName" className="input input-bordered" />
                     </div>
-                    <div className="my-2 w-1/2 lg:w-1/4">
-                        <button className="uppercase text-sm font-bold tracking-wide bg-green-900 text-gray-100 p-3 rounded-lg w-full 
-              focus:outline-none focus:shadow-outline">
-                            Send Message
-                        </button>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Instructor Email</span>
+                        </label>
+                        <input type="text" defaultValue={user.email} {...register("instructorEmail", { required: true })} name="instructorEmail" className="input input-bordered" />
                     </div>
-                </div>
-
-                
-            </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Available Seats</span>
+                        </label>
+                        <input type="number"  {...register("seats", { required: true })} name="seats" className="input input-bordered" />
+                    </div>
+                    
+                    <div className="form-control mt-6 w-1/2 mx-auto">
+                        <button className="btn bg-green-500">Add a Class</button>
+                    </div>
+                </form>
         </div>
     );
 };
