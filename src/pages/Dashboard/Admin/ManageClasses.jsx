@@ -2,8 +2,8 @@ import useAuth from "../../../hooks/useAuth";
 import { useQuery } from '@tanstack/react-query'
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FcApprove } from 'react-icons/fc'
-import { RiFeedbackFill} from 'react-icons/ri'
-import { RxCrossCircled} from 'react-icons/rx'
+import { RiFeedbackFill } from 'react-icons/ri'
+import { RxCrossCircled } from 'react-icons/rx'
 import toast from "react-hot-toast";
 
 const ManageClasses = () => {
@@ -21,7 +21,7 @@ const ManageClasses = () => {
     })
     // console.log(classes);
 
-    const updateStatus = (singleClass, newStatus) =>{
+    const updateStatus = (singleClass, newStatus) => {
         fetch(`${import.meta.env.VITE_API_URL}/classes/${singleClass._id}`, {
             method: 'PATCH',
             headers: {
@@ -29,18 +29,18 @@ const ManageClasses = () => {
             },
             body: JSON.stringify({ status: newStatus })
         })
-       
 
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(newStatus);
-            console.log(data);
-            if(data.modifiedCount){
-                refetch();
-                toast.success("Status Changed Successfully")
-                
-            }
-        })
+
+            .then(res => res.json())
+            .then(data => {
+                console.log(newStatus);
+                console.log(data);
+                if (data.modifiedCount) {
+                    refetch();
+                    toast.success("Status Changed Successfully")
+
+                }
+            })
     }
 
 
@@ -88,10 +88,14 @@ const ManageClasses = () => {
                             <td>{singleClass.email}</td>
                             <td>{singleClass.seats}</td>
                             <td>${singleClass.price}</td>
-                            <td className="capitalize">{singleClass.status}</td>
+                            <td >
+                                <button className={`btn btn-xs capitalize ${singleClass.status === 'approved' ? 'btn-success' : singleClass.status === 'denied' ? 'btn-error' : 'btn-warning'}`}>
+                                    {singleClass.status}
+                                </button>
+                            </td>
                             <td className="flex items-center justify-center mt-3 gap-3">
-                                <button onClick={()=> updateStatus(singleClass, 'approved')} ><FcApprove className="text-3xl"></FcApprove></button>
-                                <button onClick={()=> updateStatus(singleClass, 'denied')} ><RxCrossCircled className="text-2xl text-red-500"></RxCrossCircled></button>
+                                <button onClick={() => updateStatus(singleClass, 'approved')} ><FcApprove className="text-3xl"></FcApprove></button>
+                                <button onClick={() => updateStatus(singleClass, 'denied')} ><RxCrossCircled className="text-2xl text-red-500"></RxCrossCircled></button>
                                 <button ><RiFeedbackFill className="text-2xl text-sky-500"></RiFeedbackFill></button>
                             </td>
 

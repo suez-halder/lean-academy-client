@@ -51,11 +51,11 @@ const ManageUsers = () => {
                             <th>{index + 1}</th>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td className="uppercase">{user.role}</td>
+                            <td className="capitalize">{user.role}</td>
                             <td>
                                 <button 
                                 onClick={() => updateUserRole(user, 'admin')}  
-                                className="btn btn-error"
+                                className="btn btn-xs btn-error mr-4"
                                 disabled={user.role === 'admin'}
                                 >Admin
                                 
@@ -63,7 +63,7 @@ const ManageUsers = () => {
                                 
                                 <button onClick={() => 
                                     updateUserRole(user, 'instructor')} 
-                                className="btn btn-warning"
+                                className="btn btn-xs btn-warning"
                                 disabled={user.role === 'instructor'}
                                 >Instructor</button>
                             </td>
