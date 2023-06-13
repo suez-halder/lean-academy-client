@@ -46,11 +46,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'all-classes',
-                element: <AllClasses></AllClasses>
+                element: <InstructorRoute><AllClasses></AllClasses></InstructorRoute>
             },
             {
                 path: 'manage-classes',
-                element: <ManageClasses></ManageClasses>
+                element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
             },
             {
                 path: 'manage-users',
