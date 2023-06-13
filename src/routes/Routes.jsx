@@ -13,6 +13,7 @@ import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -24,14 +25,7 @@ export const router = createBrowserRouter([
                 path: '/',
                 element: <Home></Home>,
             },
-            {
-                path: 'login',
-                element: <Login></Login>
-            },
-            {
-                path: 'register',
-                element: <Register></Register>
-            }
+
         ]
     },
     {
@@ -48,7 +42,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'add-class',
-                element: <AddClass></AddClass>
+                element: <InstructorRoute><AddClass></AddClass></InstructorRoute>
             },
             {
                 path: 'all-classes',
@@ -63,6 +57,14 @@ export const router = createBrowserRouter([
                 element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             }
         ]
+    },
+    {
+        path: 'login',
+        element: <Login></Login>
+    },
+    {
+        path: 'register',
+        element: <Register></Register>
     }
 
 ]);
