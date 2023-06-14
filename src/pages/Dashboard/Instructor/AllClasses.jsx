@@ -3,12 +3,13 @@ import { useQuery } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import { LuEdit } from 'react-icons/lu'
 import { VscFeedback } from 'react-icons/vsc'
+import { Link } from "react-router-dom";
 
 const AllClasses = () => {
     const { user, loading } = useAuth()
     const [axiosSecure] = useAxiosSecure()
 
-    const { data: classes = [], refetch } = useQuery({
+    const { data: classes = [] } = useQuery({
         queryKey: ['classes', user?.email],
         enabled: !loading,
         queryFn: async () => {
@@ -49,7 +50,7 @@ const AllClasses = () => {
                         <th>Status</th>
                         <th>Enrolled Students</th>
                         <th>Feedback</th>
-                        <th>Action</th>
+                        <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,7 +72,7 @@ const AllClasses = () => {
                                 <button className="text-3xl"><VscFeedback></VscFeedback></button>
                             </td>
                             <td>
-                                <button className="text-2xl"><LuEdit></LuEdit></button>
+                                <Link to={`/dashboard/all-classes/edit/${singleClass._id}`}><button className="text-2xl"><LuEdit></LuEdit></button></Link>
                             </td>
 
                         </tr>)
