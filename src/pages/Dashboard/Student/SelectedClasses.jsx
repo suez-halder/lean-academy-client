@@ -3,8 +3,14 @@ import { FaPlus, FaTrashAlt } from 'react-icons/fa'
 import { GrCreditCard } from 'react-icons/gr'
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js'
+import CheckoutForm from "../../../components/CheckoutForm/CheckoutForm";
+
+const stripePromise = loadStripe(`${import.meta.env.VITE_Payment_Gateway_PK}`)
 
 const SelectedClasses = () => {
+
 
     const [selected, refetch] = useSelected()
     // console.log(selected);
@@ -32,7 +38,7 @@ const SelectedClasses = () => {
                     //     .then(data => {
                     //         console.log(data);
                     //         refetch();
-                           
+
                     //     })
                     //     .catch(error => console.error('Error:', error));
 
@@ -41,12 +47,6 @@ const SelectedClasses = () => {
             })
             .catch(error => console.error('Error:', error));
     }
-
-    
-
-
-
-
 
 
     return (
@@ -68,6 +68,7 @@ const SelectedClasses = () => {
 
                                         <th>Delete</th>
                                         <th>Pay</th>
+                                        <th>Card Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,6 +76,7 @@ const SelectedClasses = () => {
                                     {
                                         selected.map((singleClass, index) => <tr
                                             key={singleClass._id}
+
                                         >
                                             <th>{index + 1}</th>
                                             <td>
@@ -90,25 +92,47 @@ const SelectedClasses = () => {
 
                                             <td >
                                                 <button onClick={() => handleDelete(singleClass._id)} className="btn btn-sm  text-lg text-red-400"><FaTrashAlt></FaTrashAlt></button>
+
                                             </td>
-                                            <td>
-                                                <button className="btn btn-sm  text-2xl"><GrCreditCard></GrCreditCard></button>
+                                            <td >
+                                                <button className="btn btn-sm  text-2xl" ><GrCreditCard></GrCreditCard></button>
+
+                                            </td>
+                                            <td className="w-1/4">
+                                                <Elements stripe={stripePromise}>
+                                                    <CheckoutForm
+                                                        
+                                                        singleClass={singleClass}
+                                                    />
+                                                </Elements>
+
                                             </td>
 
-                                        </tr>)
+
+                                        </tr>
+
+                                        )
+
                                     }
 
                                 </tbody>
+
                             </table>
+
                         </div>
+
                     </div>
+
                     :
                     <>
 
                         <Link to='/classes'><button className="btn btn-info">Select Your First Class</button></Link>
                     </>
             }
+
+
         </>
+
     );
 };
 
