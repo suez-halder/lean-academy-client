@@ -56,10 +56,10 @@ const CheckoutForm = ({ singleClass }) => {
         });
 
         if (error) {
-            console.log('[error]', error);
+            // console.log('[error]', error);
             setCardError(error.message)
         } else {
-            console.log('[PaymentMethod]', paymentMethod);
+            // console.log('[PaymentMethod]', paymentMethod);
         }
 
         // confirm payment
@@ -77,10 +77,10 @@ const CheckoutForm = ({ singleClass }) => {
         );
 
         if (confirmError) {
-            console.log('[error]', confirmError);
+            // console.log('[error]', confirmError);
             setCardError(confirmError.message)
         } else {
-            console.log('[paymentIntent]', paymentIntent);
+            // console.log('[paymentIntent]', paymentIntent);
             if (paymentIntent.status === 'succeeded') {
                 // save payment info in db
                 const paymentInfo = {
@@ -90,7 +90,7 @@ const CheckoutForm = ({ singleClass }) => {
                 }
                 axiosSecure.post('/selected', paymentInfo)
                     .then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         if (res.data.insertedId) {
                                     const text = `Enrolled Successfully!, TransactionId: ${paymentIntent.id}`
                                     toast.success(text)
