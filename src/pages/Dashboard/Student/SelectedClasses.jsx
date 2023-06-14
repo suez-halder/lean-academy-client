@@ -2,15 +2,35 @@ import useSelected from "../../../hooks/useSelected";
 import { FaPlus, FaTrashAlt } from 'react-icons/fa'
 import { GrCreditCard } from 'react-icons/gr'
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SelectedClasses = () => {
 
-    const [selected] = useSelected()
-    console.log(selected);
+    const [selected, refetch] = useSelected()
+    // console.log(selected);
+
+    const handleDelete = async id => {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/selected/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('Class Deleted Successfully');
+                refetch();
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+
+
+
 
 
     return (
-        <div>
+        <div className="w-full px-2">
             <Link to='/classes'><button className="btn btn-xs btn-success"><FaPlus></FaPlus> Add More Class</button></Link>
             <div className="overflow-x-auto w-full">
                 <table className="table">
@@ -22,6 +42,7 @@ const SelectedClasses = () => {
                             <th>Class Name</th>
                             <th>Instructor Name</th>
                             <th>Price</th>
+                           
                             <th>Delete</th>
                             <th>Pay</th>
                         </tr>
@@ -39,17 +60,16 @@ const SelectedClasses = () => {
                                             <img src={singleClass.image} alt="Avatar Tailwind CSS Component" />
                                         </div>
                                     </div>
-
-
                                 </td>
                                 <td>{singleClass.className}</td>
                                 <td>{singleClass.name}</td>
                                 <td >${singleClass.price}</td>
+                                
                                 <td >
-                                    <button className="btn btn-sm btn-error text-lg"><FaTrashAlt></FaTrashAlt></button>
+                                    <button onClick={() => handleDelete(singleClass._id)} className="btn btn-sm  text-lg text-red-400"><FaTrashAlt></FaTrashAlt></button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-sm  btn-info text-2xl"><GrCreditCard></GrCreditCard></button>
+                                    <button className="btn btn-sm  text-2xl"><GrCreditCard></GrCreditCard></button>
                                 </td>
 
                             </tr>)
@@ -61,5 +81,6 @@ const SelectedClasses = () => {
         </div>
     );
 };
+
 
 export default SelectedClasses;

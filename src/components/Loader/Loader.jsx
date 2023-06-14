@@ -11,7 +11,7 @@ const Loader = () => {
         items-center 
       '
         >
-            <GridLoader size={50} color='green' />
+            <GridLoader size={25} color='green' />
         </div>
     );
 };

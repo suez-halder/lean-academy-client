@@ -58,10 +58,6 @@ const Classes = () => {
                     .catch(error => console.error('Error:', error));
 
 
-
-
-
-
             }
         } catch (error) {
             console.error('Error:', error);
