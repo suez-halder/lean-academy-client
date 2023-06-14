@@ -10,12 +10,12 @@ const Classes = () => {
     const [classes, refetch] = useClasses()
     // console.log(classes);
     const approvedClasses = classes.filter(c => c.status === 'approved')
-    console.log(approvedClasses);
+    // console.log(approvedClasses);
 
 
     const handleSelect = async (id) => {
         const selected = approvedClasses.find(c => c._id === id);
-        console.log(selected);
+        // console.log(selected);
         const { className, email, price, image, name } = selected;
 
         const selectedClass = {
