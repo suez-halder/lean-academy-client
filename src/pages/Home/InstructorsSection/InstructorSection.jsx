@@ -1,5 +1,5 @@
 
-const PopularSection = () => {
+const InstructorSection = () => {
     return (
         <div>
             
@@ -7,4 +7,4 @@ const PopularSection = () => {
     );
 };
 
-export default PopularSection;
+export default InstructorSection;
