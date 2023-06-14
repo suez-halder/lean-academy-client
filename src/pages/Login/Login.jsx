@@ -8,7 +8,7 @@ const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const { signIn, googleSignIn } = useAuth()
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const from = location.state?.from?.pathname || "/";
 
@@ -17,6 +17,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 // console.log(user);
+                reset()
                 toast.success('Logged In Successfully');
                 navigate(from, { replace: true })
 
@@ -73,7 +74,9 @@ const Login = () => {
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="password" {...register("password")} name="password" placeholder="password" className="input input-bordered" />
+                        <input type="password" {...register("password", { required: true })} name="password" placeholder="password" className="input input-bordered" />
+                        
+                        {errors.password && <span className="text-red-500 my-2 text-xs">Please provide correct password</span>}
                         <label className="label">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>

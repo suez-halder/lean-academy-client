@@ -1,23 +1,70 @@
-// import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import useClasses from "../../hooks/useClasses";
+import toast from "react-hot-toast";
 
 const Classes = () => {
-    // const {user} = useAuth()
+    const { user } = useAuth()
     // console.log(user);
     const navigate = useNavigate()
-    const [classes] = useClasses()
+    const [classes, refetch] = useClasses()
     // console.log(classes);
     const approvedClasses = classes.filter(c => c.status === 'approved')
-    // console.log(approvedClasses);
 
-    const handleSelect = async id =>{
-        console.log(id);
-        navigate('/dashboard/selected-classes')
-        
-        
 
+    const handleSelect = async (id) => {
+        const selected = approvedClasses.find(c => c._id === id);
+        console.log(selected);
+        const { className, email, price, image } = selected;
+
+        const selectedClass = {
+            className,
+            image,
+            email,
+            studentEmail: user.email,
+            price
+        }
+
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/selected`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(selectedClass)
+            });
+
+            const data = await response.json();
+
+            console.log(data);
+
+            if (data.insertedId) {
+                toast.success("Class Selected Successfully");
+
+                fetch(`${import.meta.env.VITE_API_URL}/classes/seats/${id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        refetch();
+                    })
+                    .catch(error => console.error('Error:', error));
+
+
+
+
+
+                // navigate('/dashboard/selected-classes');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
+
 
 
     return (
@@ -61,8 +108,8 @@ const Classes = () => {
                             <td>
                                 <button onClick={() => handleSelect(singleClass._id)} className="btn btn-info btn-xs">Select</button>
                             </td>
-                            
-                           
+
+
 
                         </tr>)
                     }
