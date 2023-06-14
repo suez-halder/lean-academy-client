@@ -10,19 +10,21 @@ const Classes = () => {
     const [classes, refetch] = useClasses()
     // console.log(classes);
     const approvedClasses = classes.filter(c => c.status === 'approved')
+    console.log(approvedClasses);
 
 
     const handleSelect = async (id) => {
         const selected = approvedClasses.find(c => c._id === id);
         console.log(selected);
-        const { className, email, price, image } = selected;
+        const { className, email, price, image, name } = selected;
 
         const selectedClass = {
             className,
             image,
             email,
             studentEmail: user.email,
-            price
+            price,
+            name
         }
 
         try {
@@ -36,7 +38,7 @@ const Classes = () => {
 
             const data = await response.json();
 
-            console.log(data);
+            // console.log(data);
 
             if (data.insertedId) {
                 toast.success("Class Selected Successfully");
@@ -49,8 +51,9 @@ const Classes = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                         refetch();
+                        navigate('/dashboard/selected-classes');
                     })
                     .catch(error => console.error('Error:', error));
 
@@ -58,7 +61,7 @@ const Classes = () => {
 
 
 
-                // navigate('/dashboard/selected-classes');
+
             }
         } catch (error) {
             console.error('Error:', error);
@@ -87,6 +90,7 @@ const Classes = () => {
                     {
                         approvedClasses.map((singleClass, index) => <tr
                             key={singleClass._id}
+                            className={singleClass.seats === 0 ? "bg-red-500" : ""}
                         >
                             <td>{index + 1}</td>
                             <td>
@@ -106,8 +110,17 @@ const Classes = () => {
                             <td>{singleClass.seats}</td>
                             <td>${singleClass.price}</td>
                             <td>
-                                <button onClick={() => handleSelect(singleClass._id)} className="btn btn-info btn-xs">Select</button>
+                                {singleClass.seats > 0 ? (
+                                    <button onClick={() => handleSelect(singleClass._id)} className="btn btn-info btn-xs">
+                                        Select
+                                    </button>
+                                ) : (
+                                    <button disabled className="btn btn-info btn-xs">
+                                        Select
+                                    </button>
+                                )}
                             </td>
+
 
 
 
