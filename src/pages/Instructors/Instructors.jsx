@@ -9,7 +9,7 @@ const Instructors = () => {
     // console.log(instructors);
 
     const [allInstructors, isAllInstructorsLoading] = useAllInstructors()
-    console.log(allInstructors)
+    // console.log(allInstructors)
 
     if (isAllInstructorsLoading) {
         return <Loader></Loader>

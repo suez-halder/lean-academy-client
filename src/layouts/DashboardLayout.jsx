@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import axios from "axios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const DashboardLayout = () => {
     const { user, setLoading, logOut } = useAuth()
     const [role, setRole] = useState({ isStudent: false, isInstructor: false, isAdmin: false });
+    const [axiosSecure] = useAxiosSecure()
     useEffect(() => {
         // setLoading(true)
         const fetchUserRole = async () => {
             try {
                 // setLoading(true)
                 // console.log(`${import.meta.env.VITE_API_URL}/users/role/${user?.email}`);
-                const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/role/${user?.email}`);
+                const response = await axiosSecure(`${import.meta.env.VITE_API_URL}/users/role/${user?.email}`);
                 setRole(response.data);
                 setLoading(false);
             } catch (error) {
@@ -22,7 +23,7 @@ const DashboardLayout = () => {
         };
 
         fetchUserRole();
-    }, [setLoading, user?.email]);
+    }, [setLoading, user?.email, axiosSecure]);
 
     const handleLogOut = () => {
         logOut()
@@ -47,7 +48,7 @@ const DashboardLayout = () => {
                 <ul className="menu gap-2 p-6 w-60 h-full">
                     {/* Sidebar content here */}
                     {
-                        role.isStudent &&
+                        role?.isStudent &&
                         <>
                             <li><NavLink to='selected-classes'>Selected Classes</NavLink></li>
                             <li><NavLink to='enrolled-classes'>Enrolled Classes</NavLink></li>
@@ -55,14 +56,14 @@ const DashboardLayout = () => {
                         </>
                     }
                     {
-                        role.isInstructor &&
+                        role?.isInstructor &&
                         <>
                             <li><NavLink to='add-class'>Add a Class</NavLink></li>
                             <li><NavLink to='all-classes'>All Classes</NavLink></li>
                         </>
                     }
                     {
-                        role.isAdmin &&
+                        role?.isAdmin &&
                         <>
                             <li><NavLink to='manage-classes'>Manage Classes</NavLink></li>
                             <li><NavLink to='manage-users'>Manage Users</NavLink></li>

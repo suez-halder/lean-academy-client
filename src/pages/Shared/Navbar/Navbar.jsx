@@ -50,12 +50,13 @@ const Navbar = () => {
                     user ?
                         <>
                             <img
-                                className='rounded-full mr-2'
+                                className='rounded-full mr-2 object-fit'
                                 referrerPolicy='no-referrer'
                                 src={user && user.photoURL ? user.photoURL : placeholderImg}
                                 alt="profile"
-                                height='50'
-                                width='50'
+                                height='40'
+                                width='40'
+                                
                                 
                             />
                             <button className="btn btn-accent px-4 md:px-8" onClick={handleLogOut}>Log Out</button>
