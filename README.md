@@ -1,23 +1,32 @@
-# Lean Academy: website demo
+# Lean Academy: Website Demo
+The Lean Academy is a MERN stack-based website specifically designed for a weight loss program for summer school camps. It features complete CRUD operations with an authentication system and robust backend.
+
 ## Live Link
 https://lean-academy-1346d.web.app/
-
-- Lean academy is a website based on weight loss program for summer school camp. This is a MERN stack website where you can do each CRUD operations. Authentication(Firebase) system is implemented for login/register.
-- There are 3 types of users(Student, Instructor, Admin) in Lean Academy website:
--- Student Dashboard: Once a user register, he/she will become automatically a user. They can select a class which is added by instructor and approved by admin. Enroll in a particular class by paying through Stripe payment gateway, see their payment history, delete any class if they want. 
 -- -- 
--- Instructor Dashboard: Admin can change the role of a user from Student to Instructor. Once a user becomes instructor, he/she can add new a new class, edit that particular class, also see their all classes lists where they can see how many students have enrolled in their course. Note, once the instructor add any class, it will be in pending state. Once the Admin approves the class, then Students can enroll. 
--- --
--- Admin Dashboard: Admin can manage all users and all classes. Only Admin has the permission to change the role of the user, either instructor or admin. Admin can also manage all the classes like, Admin can see all available seats for a particular class, approve, deny, or provide feedback to any class. 
+### Features
+#### ***User Roles:***
+The website distinguishes between three types of users: Students, Instructors, and Admins, each with its own specific dashboard.
 
-- Admin email: admin@admin.com 
-- Admin password: Admin123@
+-- **Student Dashboard:** Once registered, a user becomes a student by default. They can select a class added by the instructor and approved by the admin, enroll in classes through Stripe payment gateway, view their payment history, and remove any class if desired.
+
+-- **Instructor Dashboard:** Admins can change a user's role from Student to Instructor. Instructors can then add new classes, edit existing ones, and view the list of their classes along with enrolled student counts. Any class added by an instructor is in pending status until approved by the Admin.
+
+-- **Admin Dashboard:** Admins manage all users and classes. They alone can change a user's role to either Instructor or Admin. Admins also manage classes: viewing seat availability for each class, approving, denying, or providing feedback for each class.
+
+Admin credentials for the website:
+- Email: admin@admin.com 
+- Password: Admin123@
 
 -- --
-- Lean academy homepage consists of popular 6 classes enrolled by the student which is added by the instructor and approved by the Admin. MongoDB aggregate is used to perform this task in the backend server. 
-- In the menu bar there's a Class page where all the approved classes are listed and student can select them. If the available seats of any class become 0, then a student cannot further select it.
-- Only valid Student/Instructor/Admin can navigate to their own dashboard. Their api path has been secured using JWT token.
-- Dark/light theme toggle, mobile responsive.
+#### ***Website Layout:***
+- **Homepage:** Showcases six popular classes chosen by students. These classes are added by instructors and approved by Admin. This function is carried out in the backend server using MongoDB aggregate.
+
+- **Classes Page:** All approved classes are listed on the 'Class' page in the menu bar. Students can choose from these classes until seat availability reaches zero.
+
+- **Dashboard Access:** Only valid Students, Instructors, or Admins can navigate to their respective dashboards. Access to these paths has been secured using JWT tokens.
+
+- **Website Design:** The website design supports both dark/light theme toggle and is mobile responsive.
 -- --
-## Technologies:
---  HTML - CSS - Tailwind - DaisyUI - Headless UI-  React - MongoDB - Express - Firebase - Vercel - Axios - JWT - Stripe - React Query 
+### Technologies
+*HTML - CSS - React - Tailwind - DaisyUI - Headless UI - MongoDB - Express - Firebase - Vercel - React Query - Axios - JWT - Stripe*
