@@ -3,6 +3,7 @@ import useAuth from "../../../hooks/useAuth";
 import placeholderImg from '../../../assets/placeholder.jpg'
 import Logo from "../../../components/Logo/Logo";
 import { RxHamburgerMenu } from "react-icons/rx";
+import {BsSunFill, BsMoonStarsFill} from 'react-icons/bs'
 
 const Navbar = () => {
     const { user, logOut } = useAuth()
@@ -41,11 +42,26 @@ const Navbar = () => {
                 <Logo to='/'></Logo>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul  className="menu menu-horizontal px-1 text-base md:text-xl ">
+                <ul className="menu menu-horizontal px-1 text-base md:text-xl ">
                     {navOptions}
                 </ul>
             </div>
+           
             <div className="navbar-end">
+            <div className=" text-2xl flex justify-center items-center mr-2">
+                <label className="swap swap-rotate w-full text-gray-300">
+
+                    {/* this hidden checkbox controls the state */}
+                    <input type="checkbox" />
+
+                    {/* sun icon */}
+                    <BsSunFill className="swap-on"></BsSunFill>
+
+                    {/* moon icon */}
+                    <BsMoonStarsFill className="swap-off"></BsMoonStarsFill>
+
+                </label>
+            </div>
                 {
                     user ?
                         <>
@@ -56,8 +72,8 @@ const Navbar = () => {
                                 alt="profile"
                                 height='40'
                                 width='40'
-                                
-                                
+
+
                             />
                             <button className="btn btn-accent px-4 md:px-8" onClick={handleLogOut}>Log Out</button>
                         </>
