@@ -52,9 +52,14 @@ const DashboardLayout = () => {
 
             </div>
             <div className="drawer-side bg-green-400 ">
+                
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+                
                 <ul className="menu gap-2 p-6 w-60 h-full">
                     {/* Sidebar content here */}
+                    <img className="object-fit rounded-full mt-28 w-3/4 mx-auto" src={user?.photoURL} alt="" />
+                    <li><h2 className="mx-auto font-bold text-2xl">{user?.displayName}</h2></li>
+                    <div className="divider"></div>
                     {
                         role?.isStudent &&
                         <>
