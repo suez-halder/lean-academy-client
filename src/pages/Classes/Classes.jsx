@@ -2,7 +2,8 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import useClasses from "../../hooks/useClasses";
 import toast from "react-hot-toast";
-import useStudent from "../../hooks/useStudent";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 
 const Classes = () => {
     const { user } = useAuth()
@@ -12,7 +13,8 @@ const Classes = () => {
     // console.log(classes);
     const approvedClasses = classes.filter(c => c.status === 'approved')
     // console.log(approvedClasses);
-    const [isStudent] = useStudent()
+    const [isAdmin] = useAdmin()
+    const [isInstructor] = useInstructor()
     // console.log(isStudent);
 
 
@@ -110,7 +112,7 @@ const Classes = () => {
                             <td>{singleClass.seats}</td>
                             <td>${singleClass.price}</td>
                             <td>
-                                {singleClass.seats ? (
+                                {singleClass.seats>0 && (!isAdmin) && (!isInstructor) ? (
                                     <Link to='/dashboard/selected-classes'>
                                         <button onClick={() => handleSelect(singleClass._id)} className="btn btn-info btn-xs">
                                             Select
@@ -122,10 +124,6 @@ const Classes = () => {
                                     </button>
                                 )}
                             </td>
-
-
-
-
                         </tr>)
                     }
 

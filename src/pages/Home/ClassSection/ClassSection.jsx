@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { popularClasses } from "../../../apis/classes";
+import ClassCard from "../../../components/Card/ClassCard";
 import Heading from "../../../components/Heading/Heading";
 
 const ClassSection = () => {
@@ -11,7 +12,7 @@ const ClassSection = () => {
         })
     }, []); 
     
-    // console.log(topClassess);
+    console.log(topClassess);
 
 
     return (
@@ -22,9 +23,12 @@ const ClassSection = () => {
                 center={true}
             ></Heading>
 
-            <div>
+            <div className="pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
                 {
-                    topClassess.map(topClass => <p key={topClass._id}>{topClass._id}</p>)
+                    topClassess.map((topClass, index) => <ClassCard
+                    topClass={topClass}
+                    key={index}
+                    ></ClassCard>)
                 }
 
             </div>

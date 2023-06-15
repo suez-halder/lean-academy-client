@@ -7,9 +7,9 @@ import InstructorSection from "../InstructorsSection/InstructorSection";
 const Home = () => {
     return (
         <>
-        {/* <Banner></Banner> */}
+        <Banner></Banner>
         <ClassSection></ClassSection>
-        {/* <InstructorSection></InstructorSection> */}
+        <InstructorSection></InstructorSection>
         <ExtraSection></ExtraSection>
         </>
     );
