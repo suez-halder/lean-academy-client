@@ -13,14 +13,14 @@ const ExtraSection = () => {
             >
 
             </Heading>
-            <div className="flex justify-center items-center mt-4 ">
+            <div className="flex flex-col md:flex-row justify-center items-center mt-4 ">
                 {/* animation section */}
-                <div className="w-1/2 mx-auto text-center ">
+                <div className="w-2/3 md:w-1/2 mx-auto text-center ">
                     <Lottie animationData={animation} />
                 </div>
 
                 {/* faq section */}
-                <div className="w-1/3 mx-auto">
+                <div className="w-3/4 md:w-1/3 mx-auto">
                     <div className="collapse bg-base-200 mb-4">
                         <input type="checkbox" className="peer" />
                         <div className="collapse-title bg-green-500 text-white [input:checked~&]:bg-green-900 [input:checked~&]:text-white">

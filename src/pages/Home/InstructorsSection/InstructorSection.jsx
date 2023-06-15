@@ -41,7 +41,7 @@ const InstructorSection = () => {
                     }}
                     pagination={true}
                     modules={[EffectCoverflow, Pagination]}
-                    className="mySwiper w-1/3"
+                    className="mySwiper w-full md:w-1/3"
                     
                 >
 
