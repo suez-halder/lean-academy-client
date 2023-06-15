@@ -11,8 +11,8 @@ const Banner = () => {
     return (
         <div className="relative">
             
-                <h2 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-2xl md:text-5xl text-white bg-green-900 p-2 md:p-6 w-4/5 md:w-2/3 mx-auto text-center rounded-xl">Welcome to Lean Academy</h2>
-                <Link to='classes'><button className="btn btn-sm md:btn-lg  btn-success absolute bottom-1/4 md:bottom-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-sm md:text-2xl mt-1 md:mt-2">See All Classes</button></Link>
+                <h2 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-2xl md:text-5xl text-white bg-green-900 p-2 md:p-6 w-full md:w-2/3 mx-auto text-center rounded-xl">Welcome to Lean Academy</h2>
+                <Link to='classes'><button className="btn btn-sm md:btn-lg  btn-success absolute top-2/3 md:bottom-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-sm md:text-2xl mt-1 md:mt-2">See All Classes</button></Link>
             
 
 
