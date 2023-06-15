@@ -2,32 +2,18 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import useClasses from "../../hooks/useClasses";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
-import { useState } from "react";
 
 
 const Classes = () => {
     const { user } = useAuth()
-    const [admin, setAdmin] = useState([])
-    const [instructor, setInstructor] = useState([])
     // console.log(user);
     const navigate = useNavigate()
     const [classes, refetch] = useClasses()
     // console.log(classes);
     const approvedClasses = classes.filter(c => c.status === 'approved')
-    console.log(approvedClasses);
+    // console.log(approvedClasses);
 
-    useEffect(()=>{
-        fetch(`${import.meta.env.VITE_API_URL}/users/role/${user?.email}`)
-        .then(res=>res.json())
-        .then(data=>{
-            setAdmin(data)
-            setInstructor(data)
-            // console.log(data);
-        })
-    },[])
-    console.log(admin.error);
-    console.log(instructor.error);
+    
   
         
 
@@ -126,7 +112,7 @@ const Classes = () => {
                             <td>{singleClass.seats}</td>
                             <td>${singleClass.price}</td>
                             <td>
-                                {singleClass.seats>0 && (admin.error !== 'true') && (instructor.error !== 'true')? (
+                                {singleClass.seats>0? (
                                     <Link to='/dashboard/selected-classes'>
                                         <button onClick={() => handleSelect(singleClass._id)} className="btn btn-info btn-xs">
                                             Select
