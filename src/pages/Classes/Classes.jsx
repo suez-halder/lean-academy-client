@@ -1,7 +1,8 @@
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useClasses from "../../hooks/useClasses";
 import toast from "react-hot-toast";
+import useStudent from "../../hooks/useStudent";
 
 const Classes = () => {
     const { user } = useAuth()
@@ -11,6 +12,9 @@ const Classes = () => {
     // console.log(classes);
     const approvedClasses = classes.filter(c => c.status === 'approved')
     // console.log(approvedClasses);
+    const [isStudent] = useStudent()
+    // console.log(isStudent);
+
 
 
     const handleSelect = async (id) => {
@@ -106,10 +110,12 @@ const Classes = () => {
                             <td>{singleClass.seats}</td>
                             <td>${singleClass.price}</td>
                             <td>
-                                {singleClass.seats > 0 ? (
-                                    <button onClick={() => handleSelect(singleClass._id)} className="btn btn-info btn-xs">
-                                        Select
-                                    </button>
+                                {singleClass.seats ? (
+                                    <Link to='/dashboard/selected-classes'>
+                                        <button onClick={() => handleSelect(singleClass._id)} className="btn btn-info btn-xs">
+                                            Select
+                                        </button>
+                                    </Link>
                                 ) : (
                                     <button disabled className="btn btn-info btn-xs">
                                         Select

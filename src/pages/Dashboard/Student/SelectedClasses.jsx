@@ -28,19 +28,7 @@ const SelectedClasses = () => {
                 if (data.deletedCount > 0) {
                     toast.success('Class Deleted Successfully');
                     refetch();
-                    // fetch(`${import.meta.env.VITE_API_URL}/classes/increaseSeats/${id}`, {
-                    //     method: 'PATCH',
-                    //     headers: {
-                    //         'content-type': 'application/json'
-                    //     },
-                    // })
-                    //     .then(res => res.json())
-                    //     .then(data => {
-                    //         console.log(data);
-                    //         refetch();
-
-                    //     })
-                    //     .catch(error => console.error('Error:', error));
+                  
 
                 }
 

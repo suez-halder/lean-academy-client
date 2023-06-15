@@ -3,7 +3,8 @@ import { addClass } from "../../../apis/classes";
 import { imageUpload } from "../../../apis/utils";
 import useAuth from "../../../hooks/useAuth";
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaPlus } from "react-icons/fa";
 
 const AddClass = () => {
     const {user, setLoading} = useAuth()
@@ -34,7 +35,7 @@ const AddClass = () => {
             }
             addClass(classData)
             .then(data=>{
-                console.log(data);
+                // console.log(data);
                 setLoading(false)
                 toast.success('Class Added') 
                 navigate('/dashboard/all-classes')
@@ -51,6 +52,7 @@ const AddClass = () => {
     
     return (
         <div className="w-2/3">
+            
             <form
                     onSubmit={handleSubmit(handleAddClass)}
                     noValidate=''

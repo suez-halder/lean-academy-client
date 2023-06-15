@@ -17,7 +17,7 @@ const Card = ({ instructor }) => {
                 >
                     <img
                         className='
-              object-cover 
+              object-fit 
               h-full 
               w-full 
               group-hover:scale-110 
