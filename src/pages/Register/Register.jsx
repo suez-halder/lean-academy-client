@@ -78,7 +78,7 @@ const Register = () => {
                 const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'student' }
 
                 // console.log('user profile info updated');
-                fetch('http://localhost:3000/users', {
+                fetch(`${import.meta.env.VITE_API_URL}/users`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
