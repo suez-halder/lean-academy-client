@@ -2,10 +2,18 @@ import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import {FcHome} from 'react-icons/fc'
+import {CiLogout} from 'react-icons/ci'
+import {FaUsersCog} from 'react-icons/fa'
+import {RiBuilding4Fill, RiChatHistoryFill} from 'react-icons/ri'
+import {BsBuildingsFill, BsBuildingFillAdd, BsArrowRightSquareFill} from 'react-icons/bs'
+import {GrSelect} from 'react-icons/gr'
 
 const DashboardLayout = () => {
     const { user, setLoading, logOut } = useAuth()
+    // console.log(user);
     const [role, setRole] = useState({ isStudent: false, isInstructor: false, isAdmin: false });
+    // console.log(role);
     const [axiosSecure] = useAxiosSecure()
     useEffect(() => {
         // setLoading(true)
@@ -50,28 +58,28 @@ const DashboardLayout = () => {
                     {
                         role?.isStudent &&
                         <>
-                            <li><NavLink to='selected-classes'>Selected Classes</NavLink></li>
-                            <li><NavLink to='enrolled-classes'>Enrolled Classes</NavLink></li>
-                            <li><NavLink to='payment-history'>Payment History</NavLink></li>
+                            <li><NavLink to='selected-classes'><GrSelect></GrSelect> Selected Classes</NavLink></li>
+                            <li><NavLink to='enrolled-classes'><BsArrowRightSquareFill></BsArrowRightSquareFill> Enrolled Classes</NavLink></li>
+                            <li><NavLink to='payment-history'><RiChatHistoryFill></RiChatHistoryFill> Payment History</NavLink></li>
                         </>
                     }
                     {
                         role?.isInstructor &&
                         <>
-                            <li><NavLink to='add-class'>Add a Class</NavLink></li>
-                            <li><NavLink to='all-classes'>All Classes</NavLink></li>
+                            <li><NavLink to='add-class'> <BsBuildingFillAdd></BsBuildingFillAdd>Add a Class</NavLink></li>
+                            <li><NavLink to='all-classes'><BsBuildingsFill></BsBuildingsFill> All Classes</NavLink></li>
                         </>
                     }
                     {
                         role?.isAdmin &&
                         <>
-                            <li><NavLink to='manage-classes'>Manage Classes</NavLink></li>
-                            <li><NavLink to='manage-users'>Manage Users</NavLink></li>
+                            <li><NavLink to='manage-classes'><RiBuilding4Fill></RiBuilding4Fill> Manage Classes</NavLink></li>
+                            <li><NavLink to='manage-users'><FaUsersCog></FaUsersCog> Manage Users</NavLink></li>
                         </>
                     }
                     <div className="divider"></div>
-                    <li><NavLink to='/'>Home</NavLink></li>
-                    <li><NavLink to='/' onClick={handleLogOut}>Log Out</NavLink></li>
+                    <li><NavLink to='/'><FcHome></FcHome> Home</NavLink></li>
+                    <li><NavLink to='/' onClick={handleLogOut}><CiLogout></CiLogout> Log Out</NavLink></li>
                    
                 </ul>
 

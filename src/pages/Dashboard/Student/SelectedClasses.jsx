@@ -13,7 +13,7 @@ const SelectedClasses = () => {
 
 
     const [selected, refetch] = useSelected()
-    // console.log(selected);
+    console.log(selected);
 
     const handleDelete = id => {
         fetch(`${import.meta.env.VITE_API_URL}/selected/${id}`, {
@@ -62,7 +62,7 @@ const SelectedClasses = () => {
                                 <tbody>
                                     {/* row 1 */}
                                     {
-                                        selected.map((singleClass, index) => <tr
+                                        selected?.map((singleClass, index) => <tr
                                             key={singleClass._id}
 
                                         >
