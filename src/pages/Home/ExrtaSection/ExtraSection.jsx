@@ -16,7 +16,7 @@ const ExtraSection = () => {
             <div className="flex justify-center items-center mt-4 ">
                 {/* animation section */}
                 <div className="w-1/2 mx-auto text-center ">
-                    <Lottie animationData={animation} />;
+                    <Lottie animationData={animation} />
                 </div>
 
                 {/* faq section */}
