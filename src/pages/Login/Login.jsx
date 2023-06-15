@@ -3,12 +3,17 @@ import useAuth from '../../hooks/useAuth';
 import { useForm } from "react-hook-form";
 import { FcGoogle } from 'react-icons/fc'
 import toast from 'react-hot-toast';
+import { useState } from 'react';
+import { FaEye } from 'react-icons/fa'
 
 const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const { signIn, googleSignIn } = useAuth()
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+    const [show, setShow] = useState(false)
+
 
     const from = location.state?.from?.pathname || "/";
 
@@ -70,12 +75,20 @@ const Login = () => {
                         <input type="email" {...register("email", { required: true })} name="email" placeholder="email" className="input input-bordered" />
                         {errors.email && <span className="text-red-500 my-2 text-xs">Email is required</span>}
                     </div>
-                    <div className="form-control">
+                    <div className="form-control relative">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
-                        <input type="password" {...register("password", { required: true })} name="password" placeholder="password" className="input input-bordered" />
-                        
+                        <input type={show ? "text" : "password"} {...register("password", { required: true })} name="password" placeholder="password" className="input input-bordered" />
+                        <FaEye
+                            className='absolute right-3 top-1/2 transform -translate-y-1/2'
+                            onClick={() => setShow(!show)}
+                        >
+                            {
+                                show ? <span>Hide Password</span> : <span>Show Password</span>
+                            }
+                        </FaEye>
+
                         {errors.password && <span className="text-red-500 my-2 text-xs">Please provide correct password</span>}
                         <label className="label">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>

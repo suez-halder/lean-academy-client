@@ -16,7 +16,7 @@ const Navbar = () => {
 
     const navOptions =
         <>
-            <li><NavLink to='/'>Home</NavLink></li>
+            <li ><NavLink to='/'>Home</NavLink></li>
             <li><NavLink to="instructors">Instructors</NavLink></li>
             <li><NavLink to='classes'>Classes</NavLink></li>
             {
@@ -41,7 +41,7 @@ const Navbar = () => {
                 <Link to='/'><Logo></Logo></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul  className="menu menu-horizontal px-1 text-base md:text-xl ">
                     {navOptions}
                 </ul>
             </div>
@@ -54,11 +54,11 @@ const Navbar = () => {
                                 referrerPolicy='no-referrer'
                                 src={user && user.photoURL ? user.photoURL : placeholderImg}
                                 alt="profile"
-                                height='25'
-                                width='25'
+                                height='50'
+                                width='50'
                                 
                             />
-                            <button onClick={handleLogOut}>Log Out</button>
+                            <button className="btn btn-accent px-4 md:px-8" onClick={handleLogOut}>Log Out</button>
                         </>
                         :
                         <>

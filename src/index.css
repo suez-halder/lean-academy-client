@@ -8,11 +8,11 @@
 }
 
 .drawer-side a.active {
-  color: steelblue;
+  color: white;
   font-weight: bold;
   font-size: 1.125em;
 
 }
 .drawer-side a.active {
-  background-color: goldenrod;
+  background-color: rgb(44, 43, 41);
 }

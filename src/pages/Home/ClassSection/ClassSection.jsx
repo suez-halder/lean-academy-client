@@ -12,7 +12,7 @@ const ClassSection = () => {
         })
     }, []); 
     
-    console.log(topClassess);
+    // console.log(topClassess);
 
 
     return (

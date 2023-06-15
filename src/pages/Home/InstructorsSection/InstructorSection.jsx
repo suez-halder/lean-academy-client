@@ -12,7 +12,7 @@ import Card from "../../../components/Card/Card";
 const InstructorSection = () => {
 
     const [allInstructors] = useAllInstructors()
-    console.log(allInstructors)
+    // console.log(allInstructors)
 
 
 
