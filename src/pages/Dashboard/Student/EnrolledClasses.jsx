@@ -56,7 +56,7 @@ const EnrolledClasses = () => {
                     :
                     <>
 
-                        <Link to='/dashboard/selected-classes'><button className="btn btn-info">Enroll Into Your First Class</button></Link>
+                        <Link to='/dashboard/selected-classes'><button className="btn btn-accent">Enroll Into Your First Class</button></Link>
                     </>
             }
         </>

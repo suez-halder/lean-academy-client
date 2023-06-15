@@ -114,7 +114,7 @@ const SelectedClasses = () => {
                     :
                     <>
 
-                        <Link to='/classes'><button className="btn btn-info">Select Your First Class</button></Link>
+                        <Link to='/classes'><button className="btn btn-accent">Select Your First Class</button></Link>
                     </>
             }
 

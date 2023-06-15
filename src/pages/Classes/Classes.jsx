@@ -92,7 +92,7 @@ const Classes = () => {
                     {
                         approvedClasses.map((singleClass, index) => <tr
                             key={singleClass._id}
-                            className={singleClass.seats === 0 ? "bg-red-500" : ""}
+                            className={singleClass.seats === 0 ? "bg-red-300" : ""}
                         >
                             <td>{index + 1}</td>
                             <td>
