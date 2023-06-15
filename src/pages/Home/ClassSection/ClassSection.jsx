@@ -3,7 +3,7 @@ import { useState } from "react";
 import { popularClasses } from "../../../apis/classes";
 import ClassCard from "../../../components/Card/ClassCard";
 import Heading from "../../../components/Heading/Heading";
-import { Zoom  } from "react-awesome-reveal";
+import { Slide  } from "react-awesome-reveal";
 
 const ClassSection = () => {
     const [topClassess, setTopClassess] = useState([])
@@ -29,12 +29,12 @@ const ClassSection = () => {
                 {
                     topClassess.map((topClass, index) =>
 
-                        <Zoom cascade duration={1000} key={index}>
+                        <Slide cascade duration={1000} key={index}>
                             <ClassCard
                                 topClass={topClass}
                                 
                             ></ClassCard>
-                        </Zoom >
+                        </Slide >
                     )
                 }
 

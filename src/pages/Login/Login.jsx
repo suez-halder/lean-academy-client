@@ -81,7 +81,7 @@ const Login = () => {
                         </label>
                         <input type={show ? "text" : "password"} {...register("password", { required: true })} name="password" placeholder="password" className="input input-bordered" />
                         <FaEye
-                            className='absolute right-3 top-1/2 transform -translate-y-1/2'
+                            className='absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer'
                             onClick={() => setShow(!show)}
                         >
                             {
