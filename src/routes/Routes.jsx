@@ -7,6 +7,7 @@ import Main from "../layouts/Main";
 import Classes from "../pages/Classes/Classes";
 import ManageClasses from "../pages/Dashboard/Admin/ManageClasses";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import DashboardOutlet from "../pages/Dashboard/DashboardOutlet";
 import AddClass from "../pages/Dashboard/Instructor/AddClass";
 import AllClasses from "../pages/Dashboard/Instructor/AllClasses";
 import EditClass from "../pages/Dashboard/Instructor/EditClass";
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
+            {
+                path: '/dashboard',
+                element: <DashboardOutlet></DashboardOutlet>
+            },
             {
                 path: 'selected-classes',
                 element: <StudentRoute><SelectedClasses></SelectedClasses></StudentRoute>
