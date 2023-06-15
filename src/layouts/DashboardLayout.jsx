@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 import axios from "axios";
 
 const DashboardLayout = () => {
-    const { user, setLoading } = useAuth()
+    const { user, setLoading, logOut } = useAuth()
     const [role, setRole] = useState({ isStudent: false, isInstructor: false, isAdmin: false });
     useEffect(() => {
         // setLoading(true)
@@ -23,6 +23,12 @@ const DashboardLayout = () => {
 
         fetchUserRole();
     }, [setLoading, user?.email]);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.log(error))
+    }
 
 
 
@@ -64,6 +70,8 @@ const DashboardLayout = () => {
                     }
                     <div className="divider"></div>
                     <li><NavLink to='/'>Home</NavLink></li>
+                    <li><NavLink to='/' onClick={handleLogOut}>Log Out</NavLink></li>
+                   
                 </ul>
 
             </div>

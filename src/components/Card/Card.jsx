@@ -4,15 +4,18 @@ import {MdEmail} from 'react-icons/md'
 const Card = ({ instructor }) => {
 
     return (
-        <div className="className='col-span-1 cursor-pointer group'">
+        <div className='col-span-1 cursor-pointer group'>
             <div className='flex flex-col gap-2 w-full'>
                 <div
                     className='
             aspect-square 
-            w-full 
+            w-4/5 
             relative 
             overflow-hidden 
             rounded-xl
+            mx-auto
+            mt-8
+            
           '
                 >
                     <img
@@ -20,7 +23,7 @@ const Card = ({ instructor }) => {
               object-fit 
               h-full 
               w-full 
-              group-hover:scale-110 
+             
               transition
             '
                         src={instructor?.photo}
@@ -36,8 +39,8 @@ const Card = ({ instructor }) => {
                         {/* <HeartButton /> */}
                     </div>
                 </div>
-                <div className='font-semibold text-lg'>{instructor?.name}</div>
-                <div className='font-light text-neutral-500 flex items-center  gap-2'>
+                <div className='font-semibold text-lg text-center'>{instructor?.name}</div>
+                <div className='font-light text-neutral-500 flex items-center  gap-2 mb-8 justify-center'>
                     <MdEmail></MdEmail>
                     {instructor?.email}
                 </div>

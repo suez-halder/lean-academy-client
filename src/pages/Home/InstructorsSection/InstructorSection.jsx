@@ -26,7 +26,7 @@ const InstructorSection = () => {
                 subtitle="These are the list of our top 6 instructors based on the number of enrolled student in the class. Choose your instructor now to develop your physical health!"
                 center={true}
             ></Heading>
-            <>
+            <div>
                 <Swiper
                     effect={"coverflow"}
                     grabCursor={true}
@@ -41,7 +41,7 @@ const InstructorSection = () => {
                     }}
                     pagination={true}
                     modules={[EffectCoverflow, Pagination]}
-                    className="mySwiper w-full md:w-1/3"
+                    className="mySwiper w-full md:w-1/2 bg-green-200 rounded-md"
                     
                 >
 
@@ -55,7 +55,7 @@ const InstructorSection = () => {
 
 
                 </Swiper>
-            </>
+            </div>
         </div>
     );
 };
