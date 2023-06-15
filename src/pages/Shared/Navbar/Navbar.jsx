@@ -4,9 +4,26 @@ import placeholderImg from '../../../assets/placeholder.jpg'
 import Logo from "../../../components/Logo/Logo";
 import { RxHamburgerMenu } from "react-icons/rx";
 import {BsSunFill, BsMoonStarsFill} from 'react-icons/bs'
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Navbar = () => {
     const { user, logOut } = useAuth()
+    const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
+
+    useEffect(()=>{
+        localStorage.setItem('theme', theme);
+        const localTheme = localStorage.getItem('theme')
+        document.querySelector('html').setAttribute("data-theme", localTheme);
+    },[theme])
+
+    const handleToggle = (e) =>{
+        if(e.target.checked){
+            setTheme('dark')
+        } else{
+            setTheme('light')
+        }
+    }
 
 
     const handleLogOut = () => {
@@ -52,7 +69,11 @@ const Navbar = () => {
                 <label className="swap swap-rotate w-full text-gray-300">
 
                     {/* this hidden checkbox controls the state */}
-                    <input type="checkbox" />
+                    <input 
+                    onChange={handleToggle} 
+                    type="checkbox"
+                    checked={theme === 'light'? false : true}
+                     />
 
                     {/* sun icon */}
                     <BsSunFill className="swap-on"></BsSunFill>
