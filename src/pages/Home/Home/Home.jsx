@@ -7,8 +7,8 @@ import InstructorSection from "../InstructorsSection/InstructorSection";
 const Home = () => {
     return (
         <>
-        <Banner></Banner>
-        <ClassSection></ClassSection>
+        {/* <Banner></Banner> */}
+        {/* <ClassSection></ClassSection> */}
         <InstructorSection></InstructorSection>
         <ExtraSection></ExtraSection>
         </>

@@ -36,10 +36,10 @@ const Card = ({ instructor }) => {
                         {/* <HeartButton /> */}
                     </div>
                 </div>
-                <div className='font-semibold text-lg'>{instructor.name}</div>
+                <div className='font-semibold text-lg'>{instructor?.name}</div>
                 <div className='font-light text-neutral-500 flex items-center  gap-2'>
                     <MdEmail></MdEmail>
-                    {instructor.email}
+                    {instructor?.email}
                 </div>
                 
             </div>
