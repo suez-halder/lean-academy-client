@@ -29,4 +29,4 @@ Admin credentials for the website:
 - **Website Design:** The website design supports both dark/light theme toggle and is mobile responsive.
 -- --
 ### Technologies
-*HTML - CSS - React - Tailwind - DaisyUI - Headless UI - MongoDB - Express - Firebase - Vercel - React Query - Axios - JWT - Stripe*
+*HTML5 - CSS3 - React - Tailwind - DaisyUI - React Router - MongoDB - Express - Firebase - Vercel - TanStack Query - Axios - JWT - Stripe*
