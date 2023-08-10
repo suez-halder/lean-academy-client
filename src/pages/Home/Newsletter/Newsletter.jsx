@@ -10,7 +10,7 @@ const Newsletter = () => {
             ></Heading>
             <div className="w-1/3 mx-auto my-12">
                 <div className="form-control">
-                    <input type="text" placeholder="email" className="input input-bordered" />
+                    <input type="text" placeholder="Email Address" className="input input-bordered" />
                 </div>
                 <div className="form-control mt-6">
                     <button className="btn btn-accent">Subscribe</button> 
