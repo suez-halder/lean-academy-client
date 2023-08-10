@@ -8,7 +8,7 @@ const Newsletter = () => {
                 subtitle="Stay Updated: Get the Latest News and Insights Straight to Your Inbox!"
                 center={true}
             ></Heading>
-            <div className="w-1/3 mx-auto my-12">
+            <div className="w-1/2 md:w-1/3 mx-auto my-12">
                 <div className="form-control">
                     <input type="text" placeholder="Email Address" className="input input-bordered" />
                 </div>

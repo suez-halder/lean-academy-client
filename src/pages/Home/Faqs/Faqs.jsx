@@ -12,7 +12,6 @@ const Faqs = () => {
                 subtitle='Clarify all your questions. Click on each question and get your answer. You are welcome to contact us directly.'
                 center={true}
             >
-
             </Heading>
             <div className="flex flex-col md:flex-row justify-center items-center mt-4 ">
                 {/* animation section */}
